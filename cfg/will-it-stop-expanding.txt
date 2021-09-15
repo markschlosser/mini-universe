@@ -1,0 +1,9 @@
+num_particles 255
+max_speed 32.0
+seed 40
+tick_frequency_nanoseconds 9999999
+screen_dimensions w=116,h=28
+initial_direction_range xmin=-2.0,xmax=2.0,ymin=0.0,ymax=0.0
+initial_positions num=2
+x=0,y=0
+x=100,y=100
