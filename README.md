@@ -1,6 +1,6 @@
 # mini-universe
 
-Simulate 2D interesting emergant particle interactions with this simple-but-complex software written in C. Specify infinitely configurable seed states using configuration files. Renders using symbols in a text-based command line or using actual pixels in OpenGL.
+Simulate interesting emergent 2D particle interactions with this simple-but-complex software written in C. Specify infinitely configurable seed states using configuration files. Render using symbols in a text-based command line or using actual pixels in OpenGL.
 
 ```
 .----------------------------------------------------------------.
