@@ -2,10 +2,10 @@
 #include <time.h>
 #include <stdio.h>
 
-#include "simulation.h"
-#include "render.h"
-#include "file.h"
-#include "version.h"
+#include "../simulation.h"
+#include "../render.h"
+#include "../file.h"
+#include "../version.h"
 
 #define USAGE_STR "<configuration file>"
 
@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
   if (!load_config_status) {
     printf("Error loading configuration file!\n");
     return 1;
-  }   
+  }
 
   /* Initialize simulator using above configuration and specified seed value */
   simulation_init(&sim, &sim_config);

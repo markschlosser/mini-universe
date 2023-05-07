@@ -2,7 +2,7 @@
 #include <string.h>
 #include <math.h>
 
-#include "render.h"
+#include "../render.h"
 
 static void find_range_of_particles(particle* buffer, unsigned int num_particles, fp_xy* range) {
   int i;
