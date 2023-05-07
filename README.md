@@ -1,6 +1,6 @@
 # mini-universe
 
-Simulate 2D particle interactions with this software written in C.
+Simulate 2D interesting emergant particle interactions with this simple-but-complex software written in C. Specify infinitely configurable seed states using configuration files. Renders using symbols in a text-based command line or using actual pixels in OpenGL.
 
 ```
 .----------------------------------------------------------------.
@@ -38,3 +38,46 @@ Simulate 2D particle interactions with this software written in C.
 |                                                               1|
 `----------------------------------------------------------------'
 ```
+
+# Prerequisites
+
+- CMake 3.25 or later
+- a C99 compatible C compiler such as gcc or clang
+- GLUT library
+
+# Build
+
+## Set up build directory structure and clone the repository
+
+```
+mkdir mini-universe-project
+cd mini-universe-project
+git clone https://github.com/markschlosser/mini-universe.git
+```
+
+## Build command line version
+
+From within the `mini-universe-project` directory:
+
+```
+mkdir build-cli
+cd build-cli
+cmake ../mini-universe/src/cli
+make
+```
+
+You can then run the `./mini-universe-cli` application.
+
+
+## Build OpenGL version
+
+From within the `mini-universe-project` directory:
+
+```
+mkdir build-gl
+cd build-gl
+cmake ../mini-universe/src/gl
+make
+```
+
+You can then run the `./mini-universe-gl` application.
