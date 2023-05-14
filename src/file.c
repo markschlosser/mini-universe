@@ -68,3 +68,49 @@ int file_read_config(char* path, simulation_config* config) {
   return 1;
 }
 
+int file_read_simulation(char* path, simulation* sim) {
+  FILE* fp;
+  int i;
+
+  fp = fopen(path, "rb");
+  if (!fp)
+    return 0;
+
+  fread(&sim->max_speed, sizeof(double), 1, fp);
+  fread(&sim->num_particles, sizeof(unsigned int), 1, fp);
+
+  // allocate particle buffers
+  sim->backbuffer = (particle*)malloc(sizeof(particle) * sim->num_particles);
+  sim->frontbuffer = (particle*)malloc(sizeof(particle) * sim->num_particles);
+
+  for (i = 0; i < sim->num_particles; i++) {
+    fread(&sim->frontbuffer[i].position.x, sizeof(double), 1, fp);
+    fread(&sim->frontbuffer[i].position.y, sizeof(double), 1, fp);
+    fread(&sim->frontbuffer[i].direction.x, sizeof(double), 1, fp);
+    fread(&sim->frontbuffer[i].direction.y, sizeof(double), 1, fp);
+  }
+
+  fclose(fp);
+  return 1;
+}
+
+int file_write_simulation(char* path, simulation* sim) {
+  FILE* fp;
+  int i;
+
+  fp = fopen(path, "wb");
+  if (!fp)
+    return 0;
+  
+  fwrite(&sim->max_speed, sizeof(double), 1, fp);
+  fwrite(&sim->num_particles, sizeof(unsigned int), 1, fp);
+  for (i = 0; i < sim->num_particles; i++) {
+    fwrite(&sim->frontbuffer[i].position.x, sizeof(double), 1, fp);
+    fwrite(&sim->frontbuffer[i].position.y, sizeof(double), 1, fp);
+    fwrite(&sim->frontbuffer[i].direction.x, sizeof(double), 1, fp);
+    fwrite(&sim->frontbuffer[i].direction.y, sizeof(double), 1, fp);
+  }
+
+  fclose(fp);
+  return 1;
+}
