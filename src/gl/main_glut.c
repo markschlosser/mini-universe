@@ -28,6 +28,8 @@ static void on_reshape(int w, int h) {
 static void on_keyboard(unsigned char key, int x, int y) {
   switch (key) {
     case 27: // ESC key
+      file_write_simulation("sim.bin", &sim);
+      simulation_free(&sim);
       exit(0);
       break;
     default:
@@ -60,19 +62,23 @@ int main(int argc, char** argv) {
   simulation_config sim_config;
   int load_config_status;
 
-  if (argc != 2) {
-    printf("Usage: %s <config_file>\n", argv[0]);
-    return 1;
-  }
+  // if (argc != 2) {
+  //   printf("Usage: %s <config_file>\n", argv[0]);
+  //   return 1;
+  // }
 
-  /* Populate configuration for simulation from file... */
-  load_config_status = file_read_config(argv[1], &sim_config);
-  if (!load_config_status) {
-    printf("Error loading configuration file!\n");
-    return 1;
-  }
+  if (1 == argc) {
+    file_read_simulation("sim.bin", &sim);
+  } else {
+    /* Populate configuration for simulation from file... */
+    load_config_status = file_read_config(argv[1], &sim_config);
+    if (!load_config_status) {
+      printf("Error loading configuration file!\n");
+      return 1;
+    }
 
-  simulation_init(&sim, &sim_config);
+    simulation_init(&sim, &sim_config);
+  }
 
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);

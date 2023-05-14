@@ -16,8 +16,11 @@ typedef struct {
   particle* frontbuffer;
   unsigned int num_particles;
   double max_speed;
+  /** @deprecated */
   long tick_frequency_nanoseconds;
+  /** @deprecated */
   xy screen_dimensions;
+  /** @deprecated */
   unsigned char* screen; // X=0,Y=0 is upper left
 } simulation;
 
