@@ -1,9 +1,10 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdio.h>
 
 #include <GLUT/glut.h>
 
+#include "../args.h"
 #include "../simulation.h"
 #include "../render.h"
 #include "../file.h"
@@ -59,26 +60,8 @@ static void on_timer(int id) {
 }
 
 int main(int argc, char** argv) {
-  simulation_config sim_config;
-  int load_config_status;
-
-  // if (argc != 2) {
-  //   printf("Usage: %s <config_file>\n", argv[0]);
-  //   return 1;
-  // }
-
-  if (1 == argc) {
-    file_read_simulation("sim.bin", &sim);
-  } else {
-    /* Populate configuration for simulation from file... */
-    load_config_status = file_read_config(argv[1], &sim_config);
-    if (!load_config_status) {
-      printf("Error loading configuration file!\n");
-      return 1;
-    }
-
-    simulation_init(&sim, &sim_config);
-  }
+  if (0 == args_process(argc, argv, &sim))
+    return 1;
 
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);

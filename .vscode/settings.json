@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "locale": "c",
+        "string": "c",
+        "simulation.h": "c",
+        "args.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c"
+    }
+}
