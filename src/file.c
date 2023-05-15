@@ -30,10 +30,6 @@ int file_read_config(char* path, simulation_config* config) {
       num_matched = sscanf(value, "%lf", &config->max_speed);
       if (1 != num_matched)
         return 0;
-    } else if (0 == strcmp(property, "screen_dimensions")) {
-      num_matched = sscanf(value, "w=%hhu,h=%hhu", &config->screen_dimensions.x, &config->screen_dimensions.y);
-      if (2 != num_matched)
-        return 0;
     } else if (0 == strcmp(property, "initial_direction_range")) {
       num_matched = sscanf(value, "xmin=%lf,xmax=%lf,ymin=%lf,ymax=%lf", &config->initial_direction_range[0].x, &config->initial_direction_range[1].x, &config->initial_direction_range[0].y, &config->initial_direction_range[1].y);
       if (4 != num_matched)

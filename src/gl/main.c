@@ -16,7 +16,7 @@ static int frame_counter = 0;
 static void on_display() {
   glClear(GL_COLOR_BUFFER_BIT);
 
-  render_frontbuffer(&sim);
+  render_frontbuffer(&sim, 0);
   simulation_swap_buffers(&sim);
   simulation_tick(&sim);
 
@@ -77,4 +77,3 @@ int main(int argc, char** argv) {
 
   return 0;
 }
-

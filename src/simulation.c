@@ -10,22 +10,39 @@
 
 static void solve_particle(int, unsigned int, particle*, particle*, double);
 
+void simulation_find_range_of_particles(particle* buffer, unsigned int num_particles, fp_xy* range) {
+  int i;
+
+  range[0].x = range[1].x = buffer[0].position.x;
+  range[0].y = range[1].y = buffer[0].position.y;
+
+  for(i = 1; i < num_particles; i++) { // find min max
+    particle* pe = &buffer[i];
+    if(pe->position.x < range[0].x) {
+      range[0].x = pe->position.x;
+    }
+    else if(pe->position.x > range[1].x) {
+      range[1].x = pe->position.x;
+    }
+    if(pe->position.y < range[0].y) {
+      range[0].y = pe->position.y;
+    }
+    else if(pe->position.y > range[1].y) {
+      range[1].y = pe->position.y;
+    }
+  }
+}
+
 void simulation_init(simulation* sim, simulation_config* config){
   int i, ndx;
-
-  if (config->screen_dimensions.x > MAX_SCREEN_DIMENSION || config->screen_dimensions.y > MAX_SCREEN_DIMENSION)
-    return;
 
   // copy configuration into simulation object
   sim->num_particles = config->num_particles;
   sim->max_speed = config->max_speed;
-  sim->screen_dimensions.x = config->screen_dimensions.x;
-  sim->screen_dimensions.y = config->screen_dimensions.y;
   sim->tick_frequency_nanoseconds = config->tick_frequency_nanoseconds;
 
   printf("num_particles = %d\n", sim->num_particles);
   printf("max_speed = %f\n", sim->max_speed);
-  printf("screen_dimensions = %d,%d\n", sim->screen_dimensions.x, sim->screen_dimensions.y);
   printf("seed = %d\n", config->seed);
   printf("initial_direction_range = {xmin=%f,xmax=%f,ymin=%f,ymax=%f}\n", config->initial_direction_range[0].x, config->initial_direction_range[1].x, config->initial_direction_range[0].y, config->initial_direction_range[1].y);
   printf("num_initial_positions = %d\n", config->num_initial_positions);
@@ -39,9 +56,6 @@ void simulation_init(simulation* sim, simulation_config* config){
   // allocate particle buffers
   sim->backbuffer = (particle*)malloc(sizeof(particle) * sim->num_particles);
   sim->frontbuffer = (particle*)malloc(sizeof(particle) * sim->num_particles);
-
-  // allocate screen buffer
-  sim->screen = (unsigned char*)malloc(sizeof(unsigned char) * sim->screen_dimensions.x * sim->screen_dimensions.y);
 
   // seed the universe's initial state
   for(i = 0; i < sim->num_particles; i++) {
@@ -57,7 +71,6 @@ printf("setting dir = %f,%f\n", sim->frontbuffer[i].direction.x, sim->frontbuffe
 void simulation_free(simulation* sim) {
   free(sim->backbuffer);
   free(sim->frontbuffer);
-  free(sim->screen);
 }
 
 void simulation_tick(simulation* sim) {
