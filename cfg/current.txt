@@ -1,7 +1,6 @@
 num_particles 512
 max_speed 32.0
 seed 40032
-screen_dimensions w=116,h=40
 initial_direction_range xmin=-24.0,xmax=24.0,ymin=-24.0,ymax=24.0
 initial_positions num=1
 x=0,y=0

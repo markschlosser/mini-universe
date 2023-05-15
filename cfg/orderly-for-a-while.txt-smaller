@@ -2,7 +2,6 @@ num_particles 100
 max_speed 8.0
 seed 40
 tick_frequency_nanoseconds 9999999
-screen_dimensions w=16,h=16
 initial_direction_range xmin=-4.0,xmax=4.0,ymin=-4.0,ymax=4.0
 initial_positions num=4
 x=0,y=0
