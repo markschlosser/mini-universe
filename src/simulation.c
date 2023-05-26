@@ -136,4 +136,3 @@ static void solve_particle(int part_ndx, unsigned int num_particles, particle* b
   XY_COPY(frontbuffer[part_ndx].position, p1); /* save new position in frontbuffer */
   XY_COPY(frontbuffer[part_ndx].direction, total_dir); /* assign new total direction */
 } /* solve_particle */
-

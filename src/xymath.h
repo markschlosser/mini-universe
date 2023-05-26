@@ -14,4 +14,3 @@
 #define XY_NORMALIZE(a) {double d = sqrt(a.x * a.x + a.y * a.y);  if(d) {a.x /= d; a.y /= d;}}
 
 #endif /* ifndef __XYMATH_H__ */
-
