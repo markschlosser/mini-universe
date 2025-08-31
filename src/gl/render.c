@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+
+#ifdef __linux__
+#include <GL/gl.h>
+#else
 #include <OpenGL/gl.h>
+#endif
 
 #include "../render.h"
 

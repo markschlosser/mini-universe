@@ -8,4 +8,4 @@ include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
 
 add_executable (mini-universe-gl ../args.c ../args.h ../file.c ../file.h main.c render.c ../render.h ../simulation.c ../simulation.h ../version.h ../xymath.h)
 
-target_link_libraries(mini-universe-gl ${OPENGL_LIBRARIES} GLUT::GLUT )
+target_link_libraries(mini-universe-gl ${OPENGL_LIBRARIES} GLUT::GLUT m)

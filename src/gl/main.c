@@ -2,7 +2,11 @@
 #include <time.h>
 #include <stdio.h>
 
+#ifdef __linux__
+#include <GL/glut.h>
+#else
 #include <GLUT/glut.h>
+#endif
 
 #include "../args.h"
 #include "../simulation.h"
