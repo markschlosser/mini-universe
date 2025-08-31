@@ -86,6 +86,11 @@ int file_read_simulation(char* path, simulation* sim) {
     fread(&sim->frontbuffer[i].direction.y, sizeof(double), 1, fp);
   }
 
+  fread(&sim->orig_world_range[0].x, sizeof(double), 1, fp);
+  fread(&sim->orig_world_range[0].y, sizeof(double), 1, fp);
+  fread(&sim->orig_world_range[1].x, sizeof(double), 1, fp);
+  fread(&sim->orig_world_range[1].y, sizeof(double), 1, fp);
+
   fclose(fp);
   return 1;
 }
@@ -106,6 +111,11 @@ int file_write_simulation(char* path, simulation* sim) {
     fwrite(&sim->frontbuffer[i].direction.x, sizeof(double), 1, fp);
     fwrite(&sim->frontbuffer[i].direction.y, sizeof(double), 1, fp);
   }
+
+  fwrite(&sim->orig_world_range[0].x, sizeof(double), 1, fp);
+  fwrite(&sim->orig_world_range[0].y, sizeof(double), 1, fp);
+  fwrite(&sim->orig_world_range[1].x, sizeof(double), 1, fp);
+  fwrite(&sim->orig_world_range[1].y, sizeof(double), 1, fp);
 
   fclose(fp);
   return 1;

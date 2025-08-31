@@ -15,6 +15,8 @@ typedef struct {
   double max_speed;
   /** @deprecated */
   long tick_frequency_nanoseconds;
+  unsigned short no_fit_view;
+  fp_xy orig_world_range[2];
 } simulation;
 
 typedef struct {
