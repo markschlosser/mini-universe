@@ -65,7 +65,10 @@ printf("setting pos = %f,%f\n", sim->frontbuffer[i].position.x, sim->frontbuffer
     sim->frontbuffer[i].direction.x = RANDOM_DOUBLE(config->initial_direction_range[0].x, config->initial_direction_range[1].x);
     sim->frontbuffer[i].direction.y = RANDOM_DOUBLE(config->initial_direction_range[0].y, config->initial_direction_range[1].y);
 printf("setting dir = %f,%f\n", sim->frontbuffer[i].direction.x, sim->frontbuffer[i].direction.y);
-  } 
+  }
+
+  /* set the original world range before any particles move. */
+  simulation_find_range_of_particles(sim->frontbuffer, sim->num_particles, sim->orig_world_range);
 }
 
 void simulation_free(simulation* sim) {

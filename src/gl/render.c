@@ -12,9 +12,15 @@
 
 void render_frontbuffer(simulation* sim, void* anything) {
   int i;
-  fp_xy world_range[2];
+  fp_xy local_world_range[2];
+  fp_xy *world_range;
 
-  simulation_find_range_of_particles(sim->frontbuffer, sim->num_particles, world_range);
+  if (sim->no_fit_view)
+    world_range = sim->orig_world_range;
+  else {
+    world_range = local_world_range;
+    simulation_find_range_of_particles(sim->frontbuffer, sim->num_particles, world_range);
+  }
 
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
   glClear(GL_COLOR_BUFFER_BIT);
